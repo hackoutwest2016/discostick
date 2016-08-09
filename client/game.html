@@ -1,3 +1,10 @@
 <template name="game">
-  <h1>Game</h1>
+  <h1>Welcome to this game!</h1>
+
+  {{gameId}}
+
+  {{#each players}}
+  	<li>{{this}}</li>
+  {{/each}}
+
 </template>
