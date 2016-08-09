@@ -19,15 +19,11 @@ Template.layout.events({
 });
 
 Template.avatar.helpers({
-  shouldRender() {
-    return this.profile && this.profile.images && this.profile.images.length;
-  },
-
   url() {
-    if (this.profile.images && this.profile.images[0]) {
+    if (this.profile && this.profile.images && this.profile.images[0]) {
       return this.profile.images[0].url;
     }
 
-    return '';
+    return 'http://placekitten.com/100/100';
   }
 });

@@ -54,6 +54,21 @@ a {
   }
 }
 
+.btn {
+  display: inline-block;
+  text-decoration: none;
+  border: 1px solid #fff;
+  color: #fff;
+  border-radius: 4px;
+  padding: 2px .5em;
+  font-weight: bold;
+
+  &:hover {
+    background-color: #fff;
+    color: #000;
+  }
+}
+
 button {
   font-family: $font;
   font-size: 1.2rem;
@@ -165,10 +180,6 @@ video#bgvid {
   top: -2px;
 }
 
-.game-list {
-  @include list-reset;
-}
-
 .user-list {
   @include list-reset;
   margin: 1em 0;
@@ -182,12 +193,54 @@ video#bgvid {
 .home {
   color: #fff;
 
-  h1 {
-    text-shadow: rgba(#000, .1) 0 0 30px;
-  }
-
   a {
     color: #fff;
+  }
+
+  h1 {
+    text-shadow: rgba(#000, .1) 0 0 30px;
+    margin-bottom: 3rem;
+  }
+
+  .game-list {
+    @include list-reset;
+    max-width: 450px;
+    margin: 2rem auto 0;
+    font-weight: bold;
+
+    .avatars {
+      margin-right: .5rem;
+
+      .avatar {
+        transition: margin .25s ease;
+        margin: 0;
+        margin-right: -17px;
+        box-shadow: rgba(#000, .5) -1px 0 3px;
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+
+    li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: .5rem;
+
+      &:hover {
+        .avatars .avatar {
+          margin-right: 0;
+        }
+      }
+    }
+
+    .avatar {
+      width: 32px;
+      height: 32px;
+      margin-right: .5rem;
+    }
   }
 }
 

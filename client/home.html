@@ -10,16 +10,22 @@
     </video>
 
     {{#if games.count}}
-    <p>
-      or join a game
-    </p>
 
     <ul class="game-list">
       {{#each games}}
       <li>
-        <a href="{{pathFor 'game' name=name}}">
+        <div>
           {{ > avatar this}} {{displayName host}}
-        </a>
+        </div>
+        <div>
+          <span class="avatars">
+            {{#each joinedUsers}}
+              {{ > avatar this}}
+            {{/each}}
+          </span>
+
+          <a class="btn" href="{{pathFor 'game' name=name}}">Join</a>
+        </div>
       </li>
       {{/each}}
     </ul>
