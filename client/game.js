@@ -23,6 +23,23 @@ const createNewRound = (game) => {
 	};
 };
 
+const newGame = () => {
+	const game = getGame();
+
+	if (game) {
+		if (game.users.length === 0) {
+			alert('No players here yet!');
+			return;
+		}
+
+		Games.update(game._id, {
+			$push: {
+				rounds: createNewRound(game)
+			}
+		});
+	}
+};
+
 Template.game.onCreated(function() {
 	const game = getGame();
 
@@ -107,21 +124,7 @@ Template.game.helpers({
 Template.game.events({
 	'click [data-start-game]': function(evt) {
 		evt.preventDefault();
-
-		const game = getGame();
-
-		if (game) {
-			if (game.users.length === 0) {
-				alert('No players here yet!');
-				return;
-			}
-
-			Games.update(game._id, {
-				$push: {
-					rounds: createNewRound(game)
-				}
-			});
-		}
+		newGame();
 	},
 
 	'click [data-leave]': function(evt) {
