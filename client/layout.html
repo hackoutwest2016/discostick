@@ -10,6 +10,10 @@
 <template name="layout">
   {{#if currentUser}}
     {{> Template.dynamic template=content}}
+
+    <p>
+      <a href="#" data-logout>Log out</a>
+    </p>
   {{else}}
     {{#if loggingIn}}
       <p>
