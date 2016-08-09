@@ -51,6 +51,11 @@ Template.game.helpers({
 		return game && game.host === Meteor.userId();
 	},
 
+	isDisabled() {
+		const game = getGame();
+		return game && game.users.length === 0;
+	},
+
 	getFocusedUser() {
 		const game = getGame();
 		const round = getRound(game);

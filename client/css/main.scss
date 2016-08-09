@@ -45,6 +45,12 @@ button {
   &:hover {
     background-color: darken(rgb(52, 178, 24), 5%);
   }
+
+  &[disabled],
+  &[disabled]:hover {
+    opacity: .4;
+    background-color: rgb(52, 178, 24);
+  }
 }
 
 h1, h2, h3, h4, h5, h6 {
