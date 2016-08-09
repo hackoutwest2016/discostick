@@ -5,9 +5,11 @@
 
       {{#if havePicked}}
 
-        <h1>All done!</h1>
+        <div class="host-done">
+          <h1>All done!</h1>
 
-        {{ > player }}
+          {{ > player }}
+        </div>
 
       {{else}}
         <h1>Pick a song for {{displayName getFocusedUser._id}}</h1>
@@ -15,7 +17,9 @@
 
     {{else}}
       {{#if havePicked }}
-        Great! Now we wait.
+        <p class="have-picked">
+          You picked <strong>{{pickedSong}}</strong>
+        </p>
       {{else}}
         {{ > songPickView round}}
       {{/if}}

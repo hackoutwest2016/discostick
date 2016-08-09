@@ -60,6 +60,19 @@ Template.game.helpers({
 		return game && game.users.length === 0;
 	},
 
+	pickedSong() {
+		const game = getGame();
+
+		if (game) {
+			const round = getRound(game);
+
+			if (round) {
+				const track = _.findWhere(round.tracks, {adder: Meteor.userId()});
+				return track && track.name;
+			}
+		}
+	},
+
 	getFocusedUser() {
 		const game = getGame();
 		const round = getRound(game);
@@ -137,7 +150,7 @@ Template.songPickView.onCreated(function() {
 
 	this.songs = new Mongo.Collection(null);
 
-	this.addTrack = id => {
+	this.addTrack = (id, name) => {
 		const game = getGame();
 		const currentRound = tmpl.data;
 
@@ -145,7 +158,8 @@ Template.songPickView.onCreated(function() {
 
 		const track = {
 			adder: Meteor.userId(),
-			trackId: id
+			trackId: id,
+			name: name
 		};
 
 		currentRound.tracks.push(track);
@@ -157,7 +171,7 @@ Template.songPickView.onCreated(function() {
 Template.songPickView.events({
 	'click li': function(evt, tmpl) {
 		evt.preventDefault();
-		tmpl.addTrack(this.id);
+		tmpl.addTrack(this.id, this.name);
 	},
 
 	'input [data-search]': _.throttle(function(evt, tmpl) {

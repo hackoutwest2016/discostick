@@ -1,16 +1,24 @@
 const spotifyCreds = Meteor.settings.spotify;
 
-Meteor.methods({
-  initSpotify() {
-    console.log('Init Spotify API...');
+SpotifyApi = null;
 
-    SpotifyApi = new SpotifyWebApi({
-      clientId : spotifyCreds.clientId,
-      clientSecret : spotifyCreds.secret
-    });
-  },
+const initSpotify = () => {
+  console.log('Init Spotify API...');
+
+  SpotifyApi = new SpotifyWebApi({
+    clientId : spotifyCreds.clientId,
+    clientSecret : spotifyCreds.secret
+  });
+};
+
+Meteor.methods({
+  initSpotify: initSpotify,
 
   search(string) {
+    if (!SpotifyApi) {
+      initSpotify();
+    }
+
     try {
       const search = Meteor.wrapAsync(SpotifyApi.searchTracks);
       const response = search(string, {});

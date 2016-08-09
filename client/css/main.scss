@@ -95,7 +95,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 3.5rem;
+  font-size: 2.8rem;
   letter-spacing: -1px;
   margin-bottom: 0;
   line-height: 1;
@@ -238,4 +238,19 @@ video#bgvid {
 .pick-song {
   height: 80vh;
   margin-top: 3em;
+}
+
+.have-picked {
+  font-weight: 1.1em;
+
+  strong {
+    display: block;
+    font-size: 1.4em;
+  }
+}
+
+.host-done {
+  h1 {
+    margin-bottom: 3rem;
+  }
 }
