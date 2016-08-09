@@ -3,7 +3,19 @@ Template.home.events({
     evt.preventDefault();
 
     const gameId = Games.insert({
-      name: Random.id(4)
+      name: Random.id(4),
+      host: Meteor.userId(),
+      users: [],
+      rounds: [
+        /*
+        {
+          focusedUser
+          tracks []
+            adder
+            uri
+        }
+        */
+      ]
     });
 
     const game = Games.findOne(gameId);
