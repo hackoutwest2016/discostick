@@ -1,3 +1,5 @@
+BlazeLayout.setRoot('body');
+
 const render = template => {
   BlazeLayout.render('layout', {content: template});
 };
