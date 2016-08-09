@@ -1,0 +1,32 @@
+<head>
+  <title>Johans App</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+</head>
+
+<body>
+  {{#if currentUser}}
+    {{> app}}
+  {{else}}
+    {{#if loggingIn}}
+      <p>
+        Logging in…
+      </p>
+    {{else}}
+      {{> login}}
+    {{/if}}
+  {{/if}}
+</body>
+
+<template name="login">
+  <h1>Login with Spotify!</h1>
+  <button>Log in</button>
+</template>
+
+<template name="app">
+  <h1>{{> avatar currentUser}} Hi {{currentUser.profile.display_name}}!</h1>
+</template>
+
+<template name="avatar">
+  <img src="{{url}}" alt="{{profile.display_name}}" class="avatar">
+</template>

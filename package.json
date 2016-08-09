@@ -1,0 +1,25 @@
+{
+  "name": "cordova-test",
+  "private": true,
+  "scripts": {
+    "start": "meteor run --settings settings.json",
+    "ios": "meteor run --settings settings.json ios-device",
+    "lint": "xo"
+  },
+  "dependencies": {
+    "meteor-node-stubs": "~0.2.0"
+  },
+  "devDependencies": {
+    "xo": "^0.16.0"
+  },
+  "xo": {
+    "esnext": true,
+    "envs": ["node", "meteor", "browser"],
+    "rules": {
+      "indent": 0,
+      "babel/object-shorthand": 1,
+      "import/no-extraneous-dependencies": 0,
+      "babel/object-curly-spacing": 0
+    }
+  }
+}
