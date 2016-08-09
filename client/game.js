@@ -183,7 +183,7 @@ Template.songPickView.events({
 		tmpl.addTrack(this.id, this.name);
 	},
 
-	'input [data-search]': _.throttle(function(evt, tmpl) {
+	'input [data-search]': _.debounce(function(evt, tmpl) {
 		if (!evt.target.value) {
 			tmpl.songs.remove({});
 			return;
@@ -195,16 +195,14 @@ Template.songPickView.events({
 				return;
 			}
 
-			console.log(res);
-
 			if (res) {
-
+				tmpl.songs.remove({});
 				res.forEach(song => {
-					tmpl.songs.insert(song);
+					tmpl.songs.upsert({id: song.id}, song);
 				});
 			}
 		});
-	}, 500)
+	}, 200)
 });
 
 Template.songPickView.helpers({
@@ -221,6 +219,6 @@ Template.songPickView.helpers({
 
 	songs() {
 		const Songs = Template.instance().songs;
-		return Songs.find({}, {limit: 5, sort: {popularity: -1}});
+		return Songs.find({}, {sort: {popularity: -1}});
 	}
 });
