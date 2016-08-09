@@ -1,25 +1,28 @@
 <template name="home">
-  <div class="little_home_div">
-    <h1>Home</h1>
-    <button data-new-game>Create new game</button>
+  <div class="container home">
+    <h1 class="huge">Discostick</h1>
+
+    <button class="light" data-new-game>Create new game</button>
+
+    <video playsinline autoplay muted loop poster="bffs.png" id="bgvid">
+      <source src="res/bffs.webm" type="video/webm">
+      <source src="res/bffs.mp4" type="video/mp4">
+    </video>
+
+    {{#if games.count}}
+    <p>
+      or join a game
+    </p>
+
+    <ul class="game-list">
+      {{#each games}}
+      <li>
+        <a href="{{pathFor 'game' name=name}}">
+          {{ > avatar this}} {{displayName host}}
+        </a>
+      </li>
+      {{/each}}
+    </ul>
+    {{/if}}
   </div>
-
-  <video playsinline autoplay muted loop poster="bffs.png" id="bgvid">
-    <source src="res/bffs.webm" type="video/webm">
-    <source src="res/bffs.mp4" type="video/mp4">
-  </video>
-
-  {{#if games.count}}
-  <p>
-    or
-  </p>
-
-  <ul>
-    {{#each games}}
-    <li>
-      <a href="{{pathFor 'game' name=name}}">Hosted by {{displayName host}}</a>
-    </li>
-    {{/each}}
-  </ul>
-  {{/if}}
 </template>

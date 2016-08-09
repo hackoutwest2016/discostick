@@ -17,3 +17,17 @@ Template.layout.events({
     FlowRouter.go('home');
   }
 });
+
+Template.avatar.helpers({
+  shouldRender() {
+    return this.profile && this.profile.images && this.profile.images.length;
+  },
+
+  url() {
+    if (this.profile.images && this.profile.images[0]) {
+      return this.profile.images[0].url;
+    }
+
+    return '';
+  }
+});

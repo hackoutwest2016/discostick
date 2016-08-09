@@ -34,6 +34,10 @@ Template.game.onCreated(function() {
 });
 
 Template.game.helpers({
+	url() {
+		return Meteor.absoluteUrl(FlowRouter.path('game', {name: FlowRouter.getParam('name')}).replace(/^\//, ''));
+	},
+
 	havePicked() {
 		const game = getGame();
 
@@ -157,6 +161,11 @@ Template.songPickView.events({
 	},
 
 	'input [data-search]': _.throttle(function(evt, tmpl) {
+		if (!evt.target.value) {
+			tmpl.songs.remove({});
+			return;
+		}
+
 		Meteor.call('search', evt.target.value, (err, res) => {
 			if (err) {
 				console.error(err);
@@ -164,8 +173,8 @@ Template.songPickView.events({
 			}
 
 			console.log(res);
+
 			if (res) {
-				tmpl.songs.remove({});
 
 				res.forEach(song => {
 					tmpl.songs.insert(song);
@@ -176,12 +185,19 @@ Template.songPickView.events({
 });
 
 Template.songPickView.helpers({
-	artist(song) {
-		return song.artists[0].name;
+	artist() {
+		return this.artists[0].name;
+	},
+
+	cover() {
+		if (this.album && this.album.images && this.album.images.length) {
+			const cover = _.findWhere(this.album.images, {height: 300});
+			return cover && cover.url;
+		}
 	},
 
 	songs() {
 		const Songs = Template.instance().songs;
-		return Songs.find();
+		return Songs.find({}, {limit: 5, sort: {popularity: -1}});
 	}
 });

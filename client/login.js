@@ -16,13 +16,3 @@ Template.login.events({
     });
   }
 });
-
-Template.avatar.helpers({
-  url() {
-    if (this.profile.images && this.profile.images[0]) {
-      return this.profile.images[0].url;
-    }
-
-    return '';
-  }
-});

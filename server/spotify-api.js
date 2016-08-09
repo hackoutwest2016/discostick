@@ -11,18 +11,6 @@ Meteor.methods({
   },
 
   search(string) {
-    console.log(string);
-/*
-    SpotifyApi.searchTracks(string, {}, (err, res) => {
-      console.log(err);
-      if (err && err.statusCode === 401) {
-        // Refresh
-        console.log('Refreshing token...');
-        SpotifyApi.refreshAndUpdateAccessToken();
-      }
-    });
-*/
-
     try {
       const search = Meteor.wrapAsync(SpotifyApi.searchTracks);
       const response = search(string, {});
@@ -32,7 +20,12 @@ Meteor.methods({
       }
     } catch (ex) {
       console.log(ex);
-      throw ex;
+      if (ex.statusCode === 401) {
+        console.log('Refreshing token...');
+        SpotifyApi.refreshAndUpdateAccessToken();
+      } else {
+        throw ex;
+      }
     }
   }
 });
