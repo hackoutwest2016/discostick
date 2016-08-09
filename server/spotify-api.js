@@ -2,6 +2,8 @@ const spotifyCreds = Meteor.settings.spotify;
 
 Meteor.methods({
   initSpotify() {
+    console.log('Init Spotify API...');
+
     SpotifyApi = new SpotifyWebApi({
       clientId : spotifyCreds.clientId,
       clientSecret : spotifyCreds.secret

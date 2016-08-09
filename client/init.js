@@ -1,5 +1,9 @@
 if (Meteor.isClient) {
   Meteor.startup(() => {
-    Meteor.call('initSpotify');
+    Tracker.autorun(() => {
+      if (Meteor.userId()) {
+        Meteor.call('initSpotify');
+      }
+    });
   });
 }
