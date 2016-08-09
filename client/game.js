@@ -19,7 +19,6 @@ const createNewRound = (game) => {
 	if (rounds && rounds.length) {
 		//plockar ut alla som har varit focusedUser
 		alreadyTaken = _.pluck(rounds, 'focusedUser'); // array
-		//newFocusedUser = _.difference(users, alreadyTaken);
 	}
 
 	return {
