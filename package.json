@@ -20,6 +20,7 @@
       "babel/object-shorthand": 1,
       "import/no-extraneous-dependencies": 0,
       "babel/object-curly-spacing": 0
-    }
+    },
+    "globals": ["Games"]
   }
 }
