@@ -11,14 +11,19 @@ const createNewRound = (game) => {
 	const users = game.users;
 	const rounds = game.rounds;
 
+	const users1 = ["first", "second"];
+
 	let alreadyTaken = [];
+	let newFocusedUser = [];
 
 	if (rounds && rounds.length) {
+		//plockar ut alla som har varit focusedUser
 		alreadyTaken = _.pluck(rounds, 'focusedUser'); // array
+		//newFocusedUser = _.difference(users, alreadyTaken);
 	}
 
 	return {
-		focusedUser: _.sample(_.difference(users, alreadyTaken)),
+		focusedUser: _.sample(_.difference(users, alreadyTaken), 1),
 		tracks: []
 	};
 };
@@ -93,6 +98,7 @@ Template.game.helpers({
 	getFocusedUser() {
 		const game = getGame();
 		const round = getRound(game);
+		//return round.focusedUser;
 		return Meteor.users.findOne(round.focusedUser);
 	},
 
