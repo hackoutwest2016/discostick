@@ -47,7 +47,8 @@ Template.game.helpers({
 	},
 
 	isHost() {
-		return getGame().host === Meteor.userId();
+		const game = getGame();
+		return game && game.host === Meteor.userId();
 	},
 
 	getFocusedUser() {

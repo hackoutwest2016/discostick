@@ -1,8 +1,4 @@
 <template name="game">
-  <p>
-    <a href="{{pathFor 'home'}}" data-leave>Leave</a>
-  </p>
-
   {{#if hasBegun}}
 
     {{#if isHost}}
@@ -36,6 +32,10 @@
       <button data-start-game>Start game</button>
     </p>
   {{/if}}
+
+  <p>
+    <a href="{{pathFor 'home'}}" data-leave>{{#if isHost}}Close game{{else}}Leave{{/if}}</a>
+  </p>
 </template>
 
 <template name="songPickView">

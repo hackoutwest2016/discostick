@@ -14,5 +14,6 @@ Template.layout.events({
   'click [data-logout]': function(evt) {
     evt.preventDefault();
     Meteor.logout();
+    FlowRouter.go('home');
   }
 });
