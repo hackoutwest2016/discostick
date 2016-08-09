@@ -23,3 +23,9 @@ Template.home.events({
     FlowRouter.go('game', {name: game.name});
   }
 });
+
+Template.home.helpers({
+  games() {
+    return Games.find();
+  }
+});

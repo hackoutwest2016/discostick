@@ -2,4 +2,18 @@
   <h1>Home</h1>
 
   <button data-new-game>Create new game</button>
+
+  {{#if games.count}}
+  <p>
+    or
+  </p>
+
+  <ul>
+    {{#each games}}
+    <li>
+      <a href="{{pathFor 'game' name=name}}">Hosted by {{displayName host}}</a>
+    </li>
+    {{/each}}
+  </ul>
+  {{/if}}
 </template>

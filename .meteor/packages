@@ -27,3 +27,4 @@ fourseven:scss@=3.8.0_1
 xinranxiao:accounts-spotify
 kadira:blaze-layout
 kadira:flow-router
+arillo:flow-router-helpers

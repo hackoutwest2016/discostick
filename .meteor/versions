@@ -1,6 +1,7 @@
 accounts-base@1.1.3
 accounts-oauth@1.1.3
 allow-deny@1.0.5
+arillo:flow-router-helpers@0.5.2
 autopublish@1.0.7
 autoupdate@1.2.11
 babel-compiler@6.9.0
@@ -82,3 +83,4 @@ webapp-hashing@1.0.9
 xinranxiao:accounts-spotify@1.0.2
 xinranxiao:spotify@1.0.2
 xinranxiao:spotify-web-api@1.0.2
+zimme:active-route@2.3.2

@@ -1,10 +1,53 @@
 <template name="game">
-  <h1>Welcome to this game!</h1>
+  <p>
+    <a href="{{pathFor 'home'}}" data-leave>Leave</a>
+  </p>
 
-  {{gameId}}
+  {{#if hasBegun}}
 
-  {{#each players}}
-  	<li>{{this}}</li>
-  {{/each}}
+    {{#if isHost}}
 
+      {{#if havePicked}}
+
+        <h1>All done!</h1>
+
+        {{ > player }}
+
+      {{else}}
+        <h1>Pick a song for {{displayName getFocusedUser._id}}</h1>
+      {{/if}}
+
+    {{else}}
+      {{#if havePicked }}
+        Great! Now we wait.
+      {{else}}
+        {{ > songPickView round}}
+      {{/if}}
+    {{/if}}
+
+  {{else}}
+    <h1>Welcome to this game!</h1>
+
+    {{#each players}}
+    	<li>{{profile.id}}</li>
+    {{/each}}
+
+    <p>
+      <button data-start-game>Start game</button>
+    </p>
+  {{/if}}
+</template>
+
+<template name="songPickView">
+  <h1>Pick a song for {{displayName focusedUser}}</h1>
+
+  <input type="search" placeholder="Track..." data-search>
+
+  {{#if songs.count}}
+    <ul class="song-list" data-songs>
+      {{#each songs}}
+      <li>{{name}} – {{artist this}}</li>
+      {{/each}}
+    </ul>
+  {{/if}}
 </template>
