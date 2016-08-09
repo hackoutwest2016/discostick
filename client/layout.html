@@ -1,12 +1,15 @@
 <head>
-  <title>Johans App</title>
+  <title>Discostick</title>
   <meta name="viewport" content="width=device-width, user-scalable=no">
   <meta name="apple-mobile-web-app-capable" content="yes">
 </head>
 
 <body>
+</body>
+
+<template name="layout">
   {{#if currentUser}}
-    {{> app}}
+    {{> Template.dynamic template=content}}
   {{else}}
     {{#if loggingIn}}
       <p>
@@ -16,15 +19,6 @@
       {{> login}}
     {{/if}}
   {{/if}}
-</body>
-
-<template name="login">
-  <h1>Login with Spotify!</h1>
-  <button>Log in</button>
-</template>
-
-<template name="app">
-  <h1>{{> avatar currentUser}} Hi {{currentUser.profile.display_name}}!</h1>
 </template>
 
 <template name="avatar">

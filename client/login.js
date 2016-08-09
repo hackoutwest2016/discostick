@@ -1,7 +1,3 @@
-import { Template } from 'meteor/templating';
-
-import './main.html';
-
 Template.login.events({
   'click button'(evt) {
     evt.preventDefault();
