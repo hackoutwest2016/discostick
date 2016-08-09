@@ -101,6 +101,7 @@ button {
   &[disabled]:hover {
     opacity: .4;
     cursor: default;
+    transform: none;
   }
 }
 
@@ -170,6 +171,17 @@ video#bgvid {
   transform: translateX(-50%) translateY(-50%);
 }
 
+.overlay {
+  display: block;
+  background-color: rgba(#000, .4);
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
 .avatar {
   border-radius: 100%;
   width: 48px;
@@ -192,6 +204,8 @@ video#bgvid {
 
 .home {
   color: #fff;
+  position: relative;
+  z-index: 10;
 
   a {
     color: #fff;
@@ -200,6 +214,10 @@ video#bgvid {
   h1 {
     text-shadow: rgba(#000, .1) 0 0 30px;
     margin-bottom: 3rem;
+  }
+
+  button {
+    border-radius: 8px;
   }
 
   .game-list {

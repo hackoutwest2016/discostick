@@ -44,7 +44,7 @@
 
     {{#if isHost}}
       <p>
-        <button disabled="{{isDisabled}}" data-start-game>Everybody here? Start!</button>
+        <button disabled="{{isDisabled}}" data-start-game>{{#if isDisabled}}No players have joined{{else}}Everybody here? Start!{{/if}}</button>
       </p>
     {{/if}}
   {{/if}}
