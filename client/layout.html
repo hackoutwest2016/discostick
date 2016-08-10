@@ -12,10 +12,9 @@
   {{#if started}}
     {{> Template.dynamic template=content}}
 
-    <p>
+    <div class="controls">
       <a href="#" data-logout>Log out</a>
-    </p>
-
+    </div>
   {{else}}
     {{#if loggingIn}}
       <p>

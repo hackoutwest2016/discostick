@@ -11,18 +11,19 @@
     <ul class="game-list">
       {{#each games}}
       <li>
-        <div>
-          {{ > avatar this}} {{displayName host}}
-        </div>
-        <div>
-          <span class="avatars">
+        <span class="avatars">
+          {{#if joinedUsers.count}}
             {{#each joinedUsers}}
               {{ > avatar this}}
             {{/each}}
-          </span>
+          {{else}}
+            <p class="no-content">
+              No players yet.
+            </p>
+          {{/if}}
+        </span>
 
-          <a class="btn" href="{{pathFor 'game' name=name}}">Join</a>
-        </div>
+        <a class="btn" href="{{pathFor 'game' name=name}}">Join</a>
       </li>
       {{/each}}
     </ul>
