@@ -13,7 +13,9 @@
     {{> Template.dynamic template=content}}
 
     <div class="controls">
-      <a href="#" data-logout>Log out</a>
+      {{#unless isHost}}
+        <a href="#" data-logout>Log out</a>
+      {{/unless}}
     </div>
   {{else}}
     {{#if loggingIn}}
@@ -22,7 +24,7 @@
       </p>
     {{else}}
       <button class="dark" data-new-game>Create new game</button>
-      
+
       {{> login}}
     {{/if}}
   {{/if}}

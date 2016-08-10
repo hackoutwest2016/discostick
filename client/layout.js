@@ -28,5 +28,9 @@ Template.layout.events({
 Template.layout.helpers({
   started() {
     return Meteor.userId() || Session.get('isHost');
+  },
+
+  isHost() {
+    return Session.get('isHost');
   }
 });
