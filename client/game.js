@@ -3,6 +3,25 @@ const getGame = () => {
 	return Games.findOne({name: name});
 };
 
+const getCurrentRound = () => {
+	const game = getGame();
+		if (game) {
+			const currentRound = _.last(game.rounds);
+			if(currentRound) {
+				return currentRound;
+			}
+		}
+}
+
+const allUsersHavePicked = () => {
+	const currentRound = getCurrentRound();
+	const game = getGame();
+
+	if (currentRound && game) {
+		return game.users.length === currentRound.tracks.length;
+	}
+}
+
 const getRound = game => {
 	return _.last(game.rounds);
 };
@@ -10,6 +29,7 @@ const getRound = game => {
 const createNewRound = (game) => {
 	const users = game.users;
 	const rounds = game.rounds;
+	let points = [0];
 
 
 	let alreadyTaken = [];
@@ -20,6 +40,7 @@ const createNewRound = (game) => {
 
 	return {
 		focusedUser: _.sample(_.difference(users, alreadyTaken)),
+		points: points,
 		tracks: []
 	};
 };
@@ -71,15 +92,7 @@ Template.game.helpers({
 	},
 
 	havePicked() {
-		const game = getGame();
-
-		if (game) {
-			const currentRound = _.last(game.rounds);
-
-			if (currentRound) {
-				return game.users.length === currentRound.tracks.length;
-			}
-		}
+		return allUsersHavePicked();
 	},
 
 	isHost() {
@@ -92,14 +105,24 @@ Template.game.helpers({
 	},
 
 	pickedSong() {
-		const game = getGame();
+		const currentRound = getCurrentRound();
+		if (currentRound) {
+			const track = _.findWhere(currentRound.tracks, {adder: Meteor.userId()});
+			return track && track.name;
+		}
+		
+	},
 
+	chosenSongs() {
+		if(!allUsersHavePicked()) {
+			return;
+		}
+		const game = getGame();
 		if (game) {
 			const round = getRound(game);
-
 			if (round) {
-				const track = _.findWhere(round.tracks, {adder: Meteor.userId()});
-				return track && track.name;
+				const trackContexts = round.tracks;
+				return trackContexts;
 			}
 		}
 	},
@@ -135,10 +158,29 @@ Template.game.helpers({
 	}
 });
 
+const findIndex = (array, attr, value) => {
+    for(var i = 0; i < array.length; i += 1) {
+        if(array[i][attr] === value) {
+            return i;
+        }
+    }
+    return -1;
+}
+
 Template.game.events({
 	'click [data-start-game]': function(evt) {
 		evt.preventDefault();
 		newGame();
+	},
+	'click li': function(evt){
+		const game = getGame();
+		const currentRound = getCurrentRound();
+		if(currentRound) {
+			const index = findIndex(currentRound.tracks, 'name', this.name);
+			currentRound.points[index] = currentRound.points[index] + 1;
+			console.log(currentRound.points[index])
+			Meteor.call('updateRound', game._id, currentRound);
+		} 
 	}
 });
 

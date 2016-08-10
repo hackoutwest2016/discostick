@@ -20,7 +20,20 @@
       {{/if}}
 
     {{else}}
-      {{#if havePicked }}
+      {{ #if havePicked }}
+        <ul class="song-list" data-songs>
+            {{#each chosenSongs}}
+            <li>
+              {{#if cover}}<img src="{{cover}}" class="cover">{{/if}}
+
+              <div class="song-meta">
+                <strong class="song-name">{{name}}</strong><br>
+                <span class="artist">{{artist}}</span>
+              </div>
+            </li>
+            {{/each}}
+          </ul>
+
         <p class="have-picked">
           You picked <strong>{{pickedSong}}</strong>
         </p>
