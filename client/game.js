@@ -99,6 +99,20 @@ Template.game.helpers({
 		return allUsersHavePicked();
 	},
 
+	playerHavePicked() {
+        const game = getGame();
+
+        if (game) {
+            const currentRound = _.last(game.rounds);
+
+            if (currentRound) {
+							console.log(_.where(currentRound.tracks, {adder: Meteor.userId()}).length > 0);
+							return _.where(currentRound.tracks, {adder: Meteor.userId()}).length > 0;
+            }
+        }
+
+    },
+
 	isHost() {
 		return Session.get('isHost');
 	},
@@ -114,7 +128,7 @@ Template.game.helpers({
 			const track = _.findWhere(currentRound.tracks, {adder: Meteor.userId()});
 			return track && track.name;
 		}
-		
+
 	},
 
 	chosenSongs() {
@@ -184,7 +198,7 @@ Template.game.events({
 			currentRound.points[index] = currentRound.points[index] + 1;
 			console.log(currentRound.points[index])
 			Meteor.call('updateRound', game._id, currentRound);
-		} 
+		}
 	}
 });
 
