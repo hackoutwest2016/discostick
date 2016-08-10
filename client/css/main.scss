@@ -71,6 +71,10 @@ a {
   }
 }
 
+.btn-login {
+  color: #fff;
+}
+
 button {
   font-family: $font;
   font-size: 1.2rem;
@@ -79,7 +83,7 @@ button {
   -webkit-appearance: none;
   text-align: center;
   padding: 1em 1em;
-  border-radius: 3em;
+  border-radius: 0.5em;
   background-color: transparent;
   border: 3px solid;
   font-weight: bold;
@@ -101,7 +105,8 @@ button {
 
   &[disabled],
   &[disabled]:hover {
-    opacity: .4;
+    color: rgba(#000, .3);
+    border-color: rgba(#000, .2);
     cursor: default;
     transform: none;
   }
@@ -134,16 +139,22 @@ h1 {
 input[type="search"] {
   -webkit-appearance: none;
   font-size: 1.3em;
-  padding: .5em 0;
+  padding: .5em;
   border-radius: 5px;
-  border: 2px solid #d6d6d6;
+  border: 3px solid rgba(#000, .3);
   font-family: $font;
   font-weight: bold;
   width: 100%;
+  background-color: transparent;
+
+  &::-webkit-input-placeholder {
+    color: rgba(#000, .5);
+    font-style: italic;
+  }
 
   &:focus {
     outline: 0;
-    border-color: $accent;
+    border-color: #000;
   }
 
   @include handheld {
@@ -197,6 +208,10 @@ code {
 .user-list {
   @include list-reset;
   margin: 2em 0 1em;
+
+  li {
+    display: inline-block;
+  }
 }
 
 .container {
@@ -322,7 +337,7 @@ code {
     border-radius: 3px;
 
     &:hover {
-      background-color: #f9f9f9;
+      background-color: rgba(#fff, .2);
       opacity: 1;
     }
   }
@@ -359,4 +374,8 @@ code {
   a {
     margin-left: .5rem;
   }
+}
+
+.game-body {
+  background-color: #E8E65A;
 }

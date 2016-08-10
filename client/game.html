@@ -20,7 +20,20 @@
       {{/if}}
 
     {{else}}
-      {{#if havePicked }}
+      {{ #if havePicked }}
+        <ul class="song-list" data-songs>
+            {{#each chosenSongs}}
+            <li data-result-list>
+              {{#if cover}}<img src="{{cover}}" class="cover">{{/if}}
+
+              <div class="song-meta">
+                <strong class="song-name">{{name}}</strong><br>
+                <span class="artist">{{artist}}</span>
+              </div>
+            </li>
+            {{/each}}
+          </ul>
+
         <p class="have-picked">
           You picked <strong>{{pickedSong}}</strong>
         </p>
@@ -44,7 +57,7 @@
 
     {{#if isHost}}
       <p>
-        <button disabled="{{isDisabled}}" data-start-game>{{#if isDisabled}}No players have joined{{else}}Everybody here? Start!{{/if}}</button>
+        <button disabled="{{isDisabled}}" data-start-game>{{#if isDisabled}}No players have joined, you loner{{else}}Everybody here? Start!{{/if}}</button>
       </p>
     {{/if}}
   {{/if}}
