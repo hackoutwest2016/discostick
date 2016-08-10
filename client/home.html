@@ -2,9 +2,11 @@
   <div class="container home">
     <h1 class="huge">Discostick</h1>
 
-    
-      <!--button class="light" data-new-game>Create new game</button-->
-    
+    <button class="light" data-new-game>Create new game</button>
+
+    {{#unless currentUser}}
+      {{> login}}
+    {{/unless}}
 
     {{#if games.count}}
 

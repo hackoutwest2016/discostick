@@ -226,11 +226,12 @@ code {
 
   h1 {
     text-shadow: rgba(#000, .1) 0 0 30px;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
   }
 
   button {
     border-radius: 8px;
+    margin-bottom: .5rem;
   }
 
   .game-list {
@@ -242,6 +243,8 @@ code {
     .no-content {
       font-style: italic;
       font-weight: normal;
+      margin-bottom: 10px;
+      font-size: .9em;
     }
 
     .avatars {
@@ -274,8 +277,8 @@ code {
     }
 
     .avatar {
-      width: 32px;
-      height: 32px;
+      width: 48px;
+      height: 48px;
       margin-right: .5rem;
     }
   }
@@ -351,4 +354,9 @@ code {
   right: 0;
   padding: .5em;
   z-index: 100;
+  font-style: italic;
+
+  a {
+    margin-left: .5rem;
+  }
 }

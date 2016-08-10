@@ -9,25 +9,19 @@
 </body>
 
 <template name="layout">
-  {{#if started}}
-    {{> Template.dynamic template=content}}
+  {{> Template.dynamic template=content}}
 
-    <div class="controls">
-      {{#unless isHost}}
-        <a href="#" data-logout>Log out</a>
-      {{/unless}}
-    </div>
-  {{else}}
-    {{#if loggingIn}}
-      <p>
-        Logging in…
-      </p>
-    {{else}}
-      <button class="dark" data-new-game>Create new game</button>
-
-      {{> login}}
+  <div class="controls">
+    {{#unless isHost}}
+    {{#if currentUser}}
+      <a href="#" data-logout>Log out</a>
     {{/if}}
-  {{/if}}
+    {{/unless}}
+
+    {{#if inGame}}
+      <a href="{{pathFor 'home'}}" data-leave>{{#if isHost}}Close game{{else}}Leave{{/if}}</a>
+    {{/if}}
+  </div>
 
   {{ > tooltips}}
 </template>
