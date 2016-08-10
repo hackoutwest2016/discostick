@@ -1,4 +1,5 @@
 @import "viewports";
+@import "tooltips";
 
 $font: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
 $accent: #00BAF0;
@@ -151,11 +152,11 @@ input[type="search"] {
 }
 
 code {
-  font-size: .8em;
+  font-size: .9em;
   font-family: Monaco, Menlo, monospace;
   background-color: #f8f8f8;
   border-radius: 3px;
-  padding: 2px 4px;
+  padding: .4em;
 }
 
 #bgvid {
@@ -195,7 +196,7 @@ code {
 
 .user-list {
   @include list-reset;
-  margin: 1em 0;
+  margin: 2em 0 1em;
 }
 
 .container {

@@ -19,6 +19,12 @@ Template.layout.events({
 });
 
 Template.avatar.helpers({
+  tooltip() {
+    if (this.profile) {
+      return this.profile.display_name || this.profile.id;
+    }
+  },
+
   url() {
     if (this.profile && this.profile.images && this.profile.images[0]) {
       return this.profile.images[0].url;

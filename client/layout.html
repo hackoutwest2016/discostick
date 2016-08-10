@@ -28,8 +28,10 @@
       {{> login}}
     {{/if}}
   {{/if}}
+
+  {{ > tooltips}}
 </template>
 
 <template name="avatar">
-  <img src="{{url}}" alt="" class="avatar">
+  <img data-tooltip="{{tooltip}}" src="{{url}}" alt="" class="avatar">
 </template>

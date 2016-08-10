@@ -30,11 +30,18 @@
     {{/if}}
 
   {{else}}
-    <h1>Join the fun!</h1>
+    {{#if isHost}}
+      <h1>Join the fun!</h1>
 
-    <p>
-      On <code><a href="{{url}}">{{url}}</a></code>
-    </p>
+      <p>
+        On
+      </p>
+      <p>
+        <code>{{url}}</code>
+      </p>
+    {{else}}
+      <h1>Waiting to start…</h1>
+    {{/if}}
 
     <ul class="user-list">
       {{#each players}}
