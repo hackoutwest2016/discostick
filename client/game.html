@@ -6,7 +6,8 @@
       {{#if havePicked}}
 
         <div class="host-done">
-          <h1>Enjoy the music.</h1>
+          {{ > avatar getFocusedUser}}
+          <h1>Enjoy the soundtrack of {{displayName getFocusedUser._id}}.</h1>
 
           {{ > player }}
 
