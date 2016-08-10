@@ -98,7 +98,6 @@ Template.game.helpers({
 	getFocusedUser() {
 		const game = getGame();
 		const round = getRound(game);
-		//return round.focusedUser;
 		return Meteor.users.findOne(round.focusedUser);
 	},
 
@@ -158,30 +157,32 @@ Template.songPickView.onCreated(function() {
 	const tmpl = this;
 
 	this.songs = new Mongo.Collection(null);
-
-	this.addTrack = (id, name) => {
-		const game = getGame();
-		const currentRound = tmpl.data;
-
-		currentRound.tracks = currentRound.tracks || [];
-
-		const track = {
-			adder: Meteor.userId(),
-			trackId: id,
-			name: name
-		};
-
-		currentRound.tracks.push(track);
-
-		Meteor.call('updateRound', game._id, currentRound);
-	};
 });
 
+const addTrack = function(evt, tmpl) {
+	evt.preventDefault();
+
+	const game = getGame();
+	const currentRound = tmpl.data;
+	const track = this;
+
+	currentRound.tracks = currentRound.tracks || [];
+
+	const song = {
+		adder: Meteor.userId(),
+		trackId: track.id,
+		name: track.name
+	};
+
+	currentRound.tracks.push(song);
+
+	Meteor.call('updateRound', game._id, currentRound);
+};
+
 Template.songPickView.events({
-	'click li': function(evt, tmpl) {
-		evt.preventDefault();
-		tmpl.addTrack(this.id, this.name);
-	},
+	'click li': addTrack,
+
+	'touchstart li': addTrack,
 
 	'input [data-search]': _.debounce(function(evt, tmpl) {
 		if (!evt.target.value) {
