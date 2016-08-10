@@ -37,7 +37,7 @@ const createNewRound = (game) => {
 	if (rounds && rounds.length) {
 		alreadyTaken = _.pluck(rounds, 'focusedUser'); // array
 
-		if(users.length == alreadyTaken.length)
+		if(users.length <= alreadyTaken.length)
 			alreadyTaken = [];
 	}
 
