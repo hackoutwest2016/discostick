@@ -164,6 +164,16 @@ Template.game.helpers({
 		return getRound(game);
 	},
 
+	waitingFor() {
+		const game = getGame();
+		const round = getRound(game);
+
+		if (round && round.tracks) {
+			const userIds = _.pluck(round.tracks, 'adder');
+			return Meteor.users.find({_id: {$nin: userIds}});
+		}
+	},
+
 	players() {
 		const name = FlowRouter.getParam("name");
 		const game = Games.findOne({name: name});

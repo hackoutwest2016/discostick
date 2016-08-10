@@ -10,27 +10,29 @@
 
     {{#if games.count}}
 
-    <ul class="game-list">
-      {{#each games}}
-      <li>
-        <span class="avatars">
-          {{#if joinedUsers.count}}
-            {{#each joinedUsers}}
-              {{ > avatar this}}
-            {{/each}}
-          {{else}}
-            <p class="no-content">
-              No players yet.
-            </p>
-          {{/if}}
-        </span>
+    {{#if currentUser}}
+      <ul class="game-list">
+        {{#each games}}
+        <li>
+          <span class="avatars">
+            {{#if joinedUsers.count}}
+              {{#each joinedUsers}}
+                {{ > avatar this}}
+              {{/each}}
+            {{else}}
+              <p class="no-content">
+                No players yet.
+              </p>
+            {{/if}}
+          </span>
 
-        <a class="btn" href="{{pathFor 'game' name=name}}">Join</a>
-      </li>
-      {{/each}}
-    </ul>
+          <a class="btn" href="{{pathFor 'game' name=name}}">Join</a>
+        </li>
+        {{/each}}
+      </ul>
 
-    <a href="#" data-clean>Remove all</a>
+      <a href="#" data-clean>Remove all</a>
+    {{/if}}
     {{/if}}
   </div>
 

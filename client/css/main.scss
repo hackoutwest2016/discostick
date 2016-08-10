@@ -193,8 +193,8 @@ code {
 
 .avatar {
   border-radius: 100%;
-  width: 48px;
-  height: 48px;
+  width: 65px;
+  height: 65px;
   display: inline-block;
   vertical-align: middle;
   position: relative;
@@ -381,4 +381,22 @@ code {
     vertical-align: middle;
     margin-left: 10px;
   }
+}
+
+.finished-picked {
+  @include list-reset;
+
+  li {
+    display: inline-block;
+  }
+}
+
+h3 {
+  margin-bottom: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 17px;
+  color: rgba(#000, .6);
+  margin-top: 3rem;
 }

@@ -17,6 +17,17 @@
 
       {{else}}
         <h1>Pick a song for {{displayName getFocusedUser._id}}</h1>
+
+        {{#if waitingFor}}
+          <h3>
+            Still waiting for…
+          </h3>
+          <ul class="finished-picked">
+            {{#each waitingFor }}
+              <li>{{ > avatar this}}</li>
+            {{/each}}
+          </ul>
+        {{/if}}
       {{/if}}
 
     {{else}}
