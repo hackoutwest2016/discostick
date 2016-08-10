@@ -325,3 +325,11 @@ video#bgvid {
     margin-bottom: 3rem;
   }
 }
+
+.controls {
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding: .5em;
+  z-index: 100;
+}
