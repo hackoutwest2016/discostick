@@ -23,9 +23,7 @@ Meteor.methods({
       const search = Meteor.wrapAsync(SpotifyApi.searchTracks);
       const response = search(string, {});
 
-      if (response) {
-        return response.body.tracks.items;
-      }
+      return response.body.tracks.items;
     } catch (ex) {
       console.log(ex);
       if (ex.statusCode === 401) {

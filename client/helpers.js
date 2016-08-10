@@ -5,7 +5,7 @@ Template.registerHelper('getUser', id => {
 Template.registerHelper('displayName', id => {
   const user = Meteor.users.findOne(id);
 
-  if (user) {
+ if (user) {
     return user.profile.id;
   }
 });

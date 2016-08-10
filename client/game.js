@@ -11,18 +11,15 @@ const createNewRound = (game) => {
 	const users = game.users;
 	const rounds = game.rounds;
 
-	const users1 = ["first", "second"];
 
 	let alreadyTaken = [];
-	let newFocusedUser = [];
 
 	if (rounds && rounds.length) {
-		//plockar ut alla som har varit focusedUser
 		alreadyTaken = _.pluck(rounds, 'focusedUser'); // array
 	}
 
 	return {
-		focusedUser: _.sample(_.difference(users, alreadyTaken), 1),
+		focusedUser: _.sample(_.difference(users, alreadyTaken)),
 		tracks: []
 	};
 };
@@ -47,11 +44,15 @@ const newGame = () => {
 Template.game.onCreated(function() {
 	const game = getGame();
 
-	if (game && game.host !== Meteor.userId()) {
+	if (game && !Session.get('isHost')) {
 		Games.update(game._id, {
 			$addToSet: {users: Meteor.userId()}
 		});
 	}
+});
+
+Template.game.onDestroyed(function() {
+	Session.set('isHost', false);
 });
 
 Template.game.helpers({
@@ -72,8 +73,7 @@ Template.game.helpers({
 	},
 
 	isHost() {
-		const game = getGame();
-		return game && game.host === Meteor.userId();
+		return Session.get('isHost');
 	},
 
 	isDisabled() {
@@ -97,7 +97,6 @@ Template.game.helpers({
 	getFocusedUser() {
 		const game = getGame();
 		const round = getRound(game);
-		//return round.focusedUser;
 		return Meteor.users.findOne(round.focusedUser);
 	},
 
@@ -144,8 +143,9 @@ Template.game.events({
 				}
 			});
 
-			if (game.host === Meteor.userId()) {
+			if (Session.get('isHost')) {
 				Games.remove(game._id);
+				Session.set('isHost', false);
 			}
 		}
 
@@ -182,7 +182,7 @@ Template.songPickView.events({
 		tmpl.addTrack(this.id, this.name);
 	},
 
-	'input [data-search]': _.throttle(function(evt, tmpl) {
+	'input [data-search]': _.debounce(function(evt, tmpl) {
 		if (!evt.target.value) {
 			tmpl.songs.remove({});
 			return;
@@ -194,16 +194,14 @@ Template.songPickView.events({
 				return;
 			}
 
-			console.log(res);
-
 			if (res) {
-
+				tmpl.songs.remove({});
 				res.forEach(song => {
-					tmpl.songs.insert(song);
+					tmpl.songs.upsert({id: song.id}, song);
 				});
 			}
 		});
-	}, 500)
+	}, 200)
 });
 
 Template.songPickView.helpers({
@@ -220,6 +218,6 @@ Template.songPickView.helpers({
 
 	songs() {
 		const Songs = Template.instance().songs;
-		return Songs.find({}, {limit: 5, sort: {popularity: -1}});
+		return Songs.find({}, {sort: {popularity: -1}});
 	}
 });

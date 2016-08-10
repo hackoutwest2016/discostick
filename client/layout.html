@@ -9,18 +9,21 @@
 </body>
 
 <template name="layout">
-  {{#if currentUser}}
+  {{#if started}}
     {{> Template.dynamic template=content}}
 
     <p>
       <a href="#" data-logout>Log out</a>
     </p>
+
   {{else}}
     {{#if loggingIn}}
       <p>
         Logging in…
       </p>
     {{else}}
+      <button class="dark" data-new-game>Create new game</button>
+      
       {{> login}}
     {{/if}}
   {{/if}}
