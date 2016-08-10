@@ -170,7 +170,10 @@ Template.game.helpers({
 
 		if (round && round.tracks) {
 			const userIds = _.pluck(round.tracks, 'adder');
-			return Meteor.users.find({_id: {$nin: userIds}});
+			const stillWaiting = _.difference(game.users, userIds);
+			return Meteor.users.find({_id: {
+				$in: stillWaiting
+			}});
 		}
 	},
 
