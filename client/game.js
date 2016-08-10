@@ -23,7 +23,7 @@ const createNewRound = (game) => {
 	}
 
 	return {
-		focusedUser: _.sample(_.difference(users, alreadyTaken), 1),
+		focusedUser: _.sample(_.difference(users, alreadyTaken)),
 		tracks: []
 	};
 };
