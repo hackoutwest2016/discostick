@@ -17,13 +17,14 @@ const createNewRound = (game) => {
 	if (rounds && rounds.length) {
 		alreadyTaken = _.pluck(rounds, 'focusedUser'); // array
 
-		if(rounds.length == alreadyTaken.length)
+		if(users.length == alreadyTaken.length)
 			alreadyTaken = [];
 	}
 
 	return {
 		focusedUser: _.sample(_.difference(users, alreadyTaken)),
-		tracks: []
+		tracks: [],
+		id: Random.id()
 	};
 };
 
