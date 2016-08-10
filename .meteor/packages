@@ -29,3 +29,4 @@ kadira:blaze-layout
 kadira:flow-router
 arillo:flow-router-helpers
 session
+lookback:tooltips

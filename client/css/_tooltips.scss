@@ -1,0 +1,95 @@
+/* =TOOLTIPS
+--------------------------------------------- */
+
+.tooltip {
+  $arrow-size: 5px;
+  $tooltip-color: rgba(#000, .9);
+
+  position: absolute;
+  z-index: 1003;
+  pointer-events: none;
+  opacity: 0;
+  max-width: 250px;
+  text-align: center;
+  line-height: 1.5;
+  font-size: to_rem(13);
+  transition: opacity .1s ease-out;
+
+  .inner {
+    background-color: $tooltip-color;
+    -webkit-backdrop-filter: blur(2px);
+    border-radius: 4px;
+    padding: 4px 10px;
+
+    @if(lightness($tooltip-color) < 50%) {
+      color: #fff;
+    }
+    @else {
+      color: #000;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    ul, ol {
+      margin: 0;
+      padding: 0;
+      text-align: left;
+    }
+
+    .tooltip__list--detail-last {
+      li:last-child {
+        font-size: .9em;
+      }
+    }
+  }
+
+  &.hide {
+    opacity: 0;
+  }
+
+  &.show {
+    opacity: 1;
+  }
+
+  // CSS arrow
+  .inner::after {
+    content: "";
+    display: block;
+    bottom: -$arrow-size*2;
+    left: calc(50% - #{$arrow-size});
+    width: 0;
+    height: 0;
+    border: $arrow-size solid;
+    border-color: $tooltip-color transparent transparent;
+    position: absolute;
+  }
+
+  &.tooltip--left .inner {
+    box-shadow: rgba(#000, .1) -1px 1px 1px;
+
+    &::after {
+      right: -$arrow-size*2;
+      left: auto;
+      bottom: calc(50% - #{$arrow-size});
+      border-color: transparent transparent transparent $tooltip-color;
+    }
+  }
+
+  &.tooltip--right .inner {
+    box-shadow: rgba(#000, .1) 1px 1px 1px;
+
+    &::after {
+      left: -$arrow-size*2;
+      bottom: calc(50% - #{$arrow-size});
+      border-color: transparent $tooltip-color transparent transparent;
+    }
+  }
+
+  &.tooltip--bottom .inner::after {
+    top: -$arrow-size*2;
+    bottom: auto;
+    border-color: transparent transparent $tooltip-color transparent;
+  }
+}

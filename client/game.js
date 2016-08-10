@@ -132,27 +132,6 @@ Template.game.events({
 	'click [data-start-game]': function(evt) {
 		evt.preventDefault();
 		newGame();
-	},
-
-	'click [data-leave]': function(evt) {
-		evt.preventDefault();
-
-		const game = getGame();
-
-		if (game) {
-			Games.update(game._id, {
-				$pull: {
-					users: Meteor.userId()
-				}
-			});
-
-			if (Session.get('isHost')) {
-				Games.remove(game._id);
-				Session.set('isHost', false);
-			}
-		}
-
-		FlowRouter.go('home'); // you're drunk
 	}
 });
 

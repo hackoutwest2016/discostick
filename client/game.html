@@ -30,11 +30,11 @@
     {{/if}}
 
   {{else}}
-    <h1>Join the fun!</h1>
-
-    <p>
-      On <code><a href="{{url}}">{{url}}</a></code>
-    </p>
+    {{#if isHost}}
+      <h1>Join the fun!</h1>
+    {{else}}
+      <h1>Waiting to start…</h1>
+    {{/if}}
 
     <ul class="user-list">
       {{#each players}}
@@ -48,10 +48,6 @@
       </p>
     {{/if}}
   {{/if}}
-
-  <p>
-    <a href="{{pathFor 'home'}}" data-leave>{{#if isHost}}Close game{{else}}Leave{{/if}}</a>
-  </p>
 </template>
 
 <template name="songPickView">
