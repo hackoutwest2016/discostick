@@ -241,8 +241,6 @@ const addTrack = function(evt, tmpl) {
 Template.songPickView.events({
 	'click li': addTrack,
 
-	'touchstart li': addTrack,
-
 	'input [data-search]': _.debounce(function(evt, tmpl) {
 		if (!evt.target.value) {
 			tmpl.songs.remove({});
