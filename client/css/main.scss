@@ -3,6 +3,7 @@
 
 $font: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
 $accent: #00BAF0;
+$purple: rgb(158, 54, 113);
 
 @mixin list-reset {
   margin: 0;
@@ -111,6 +112,7 @@ button {
 h1, h2, h3, h4, h5, h6 {
   margin: 0 0 1rem;
   font-weight: 800;
+  color: $purple;
 }
 
 h1 {
