@@ -71,10 +71,6 @@ a {
   }
 }
 
-.btn-login {
-  color: #fff;
-}
-
 button {
   font-family: $font;
   font-size: 1.2rem;
@@ -378,4 +374,11 @@ code {
 
 .game-body {
   background-color: #E8E65A;
+}
+
+.btn-login {
+  img {
+    vertical-align: middle;
+    margin-left: 10px;
+  }
 }
