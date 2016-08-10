@@ -51,8 +51,18 @@ Template.game.onCreated(function() {
 	}
 });
 
+Template.game.onRendered(function() {
+	$('body').addClass('game-body');
+});
+
 Template.game.onDestroyed(function() {
+	if (Session.equals('isHost', true)) {
+		const game = getGame();
+		game && Games.remove(game._id);
+	}
+
 	Session.set('isHost', false);
+	$('body').removeClass('game-body');
 });
 
 Template.game.helpers({
