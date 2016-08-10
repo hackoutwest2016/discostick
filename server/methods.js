@@ -8,6 +8,9 @@ Meteor.methods({
 				'rounds.$': round
 			}
 		});
-    console.log(Games.findOne(gameId))
+  },
+
+  removeAllGames() {
+    Games.remove({});
   }
 });

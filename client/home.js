@@ -12,6 +12,13 @@ Template.home.helpers({
   }
 });
 
+Template.home.events({
+  'click [data-clean]': function(evt) {
+    evt.preventDefault();
+    Meteor.call('removeAllGames');
+  }
+});
+
 Template.home.onDestroyed(function() {
   $('body').removeClass('body-home');
 });
