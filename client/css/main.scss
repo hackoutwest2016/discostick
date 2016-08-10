@@ -59,8 +59,9 @@ a {
   text-decoration: none;
   border: 1px solid #fff;
   color: #fff;
+  font-size: 1.1em;
   border-radius: 4px;
-  padding: 2px .5em;
+  padding: .4em 2em;
   font-weight: bold;
 
   &:hover {
@@ -237,8 +238,13 @@ code {
     margin: 2rem auto 0;
     font-weight: bold;
 
+    .no-content {
+      font-style: italic;
+      font-weight: normal;
+    }
+
     .avatars {
-      margin-right: .5rem;
+      margin-bottom: .5rem;
 
       .avatar {
         transition: margin .25s ease;
@@ -254,9 +260,10 @@ code {
 
     li {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;;
       align-items: center;
-      margin-bottom: .5rem;
+      margin-bottom: 1rem;
+      flex-direction: column;
 
       &:hover {
         .avatars .avatar {
