@@ -157,7 +157,7 @@ code {
   padding: 2px 4px;
 }
 
-video#bgvid {
+#bgvid {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -202,14 +202,25 @@ video#bgvid {
   max-width: 600px;
 }
 
+.body-home {
+  a {
+    color: #fff;
+  }
+
+  @include handheld {
+    background: transparent url('/res/mobile.jpg') no-repeat center;
+    background-size: cover;
+
+    #bgvid {
+      display: none;
+    }
+  }
+}
+
 .home {
   color: #fff;
   position: relative;
   z-index: 10;
-
-  a {
-    color: #fff;
-  }
 
   h1 {
     text-shadow: rgba(#000, .1) 0 0 30px;
